@@ -1,0 +1,180 @@
+    state    cluster    GroupCount mean_NCspksDperiod
+
+      3        0              5401     0.96723  
+      3        2             35055      1.2545  
+      3        4             45741      1.3121  
+      3        8             17022      1.3937  
+      3        12             2360     0.88771  
+      3        13            13451     0.86061  
+      3        14            33394      1.5555  
+      1        0              5079     0.34456  
+      1        2        2.2337e+05     0.97067  
+      1        4        2.4486e+05      1.0054  
+      1        8             63402      1.0823  
+      1        12             1268     0.55284  
+      1        13            49083     0.79753  
+      1        14       1.5156e+05      1.1592  
+      2        0              1061     0.62205  
+      2        2             23421      1.2467  
+      2        4             24783       1.297  
+      2        8              6866      1.5178  
+      2        12             1004      0.7261  
+      2        13             4057     0.90535  
+      2        14            17379      1.3611  
+
+
+      lme2 = fitlme(T, 'dlick_std ~ -1 + outcomeM * state * cluster + (outcomeM | uID:state:cluster) + (1 | subj)');
+
+
+      Linear mixed-effects model fit by ML
+
+      strong>Model information:
+          Number of observations          969626
+          Fixed effects coefficients          41
+          Random effects coefficients      18343
+          Covariance parameters                5
+
+      Formula:
+          Linear Mixed Formula with 5 predictors.
+
+      Model fit statistics:
+          AIC           BIC           LogLikelihood    Deviance  
+          2.5757e+06    2.5763e+06    -1.2878e+06      2.5756e+06
+
+      Fixed effects coefficients (95% CIs):
+          Name                                         Estimate     SE          tStat       DF            pValue    
+          {'state_1'                          }         -0.61311    0.099121     -6.1855    9.6958e+05    6.1948e-10
+          {'state_2'                          }         -0.38901     0.11511     -3.3795    9.6958e+05    0.00072632
+          {'cluster_2'                        }            0.472    0.044894      10.514    9.6958e+05    7.4975e-26
+          {'cluster_4'                        }          0.49466    0.044096      11.218    9.6958e+05    3.3499e-29
+          {'cluster_8'                        }           0.4465    0.052221      8.5502    9.6958e+05    1.2302e-17
+          {'cluster_12'                       }        -0.075597     0.10343    -0.73091    9.6958e+05       0.46483
+          {'cluster_13'                       }        -0.042214    0.056039    -0.75331    9.6958e+05       0.45127
+          {'cluster_14'                       }          0.50394    0.045867      10.987    9.6958e+05    4.4303e-28
+          {'outcomeM_Error'                   }          0.16559    0.038736      4.2747    9.6958e+05     1.914e-05
+          {'state_1:cluster_2'                }         0.089639     0.10199     0.87894    9.6958e+05       0.37943
+          {'state_2:cluster_2'                }         0.078196     0.11932     0.65532    9.6958e+05       0.51226
+          {'state_1:cluster_4'                }         0.082621     0.10152     0.81384    9.6958e+05       0.41573
+          {'state_2:cluster_4'                }          0.16766     0.11879      1.4114    9.6958e+05       0.15814
+          {'state_1:cluster_8'                }          0.33648     0.10783      3.1204    9.6958e+05     0.0018059
+          {'state_2:cluster_8'                }          0.45103     0.12742      3.5398    9.6958e+05    0.00040044
+          {'state_1:cluster_12'               }          0.17231     0.24431     0.70528    9.6958e+05       0.48063
+          {'state_2:cluster_12'               }          0.26571     0.18638      1.4256    9.6958e+05       0.15398
+          {'state_1:cluster_13'               }          0.40483     0.11077      3.6546    9.6958e+05    0.00025762
+          {'state_2:cluster_13'               }          0.23327     0.13589      1.7166    9.6958e+05      0.086048
+          {'state_1:cluster_14'               }          0.29797     0.10286      2.8969    9.6958e+05      0.003769
+          {'state_2:cluster_14'               }           0.2802     0.12057      2.3241    9.6958e+05      0.020122
+          {'state_1:outcomeM_Error'           }        -0.096747    0.067918     -1.4245    9.6958e+05       0.15431
+          {'state_2:outcomeM_Error'           }         -0.10085    0.090058     -1.1199    9.6958e+05       0.26277
+          {'cluster_2:outcomeM_Error'         }         -0.20844    0.041332     -5.0431    9.6958e+05    4.5814e-07
+          {'cluster_4:outcomeM_Error'         }          -0.1873    0.040812     -4.5892    9.6958e+05    4.4496e-06
+          {'cluster_8:outcomeM_Error'         }         -0.32287    0.044962     -7.1809    9.6958e+05    6.9317e-13
+          {'cluster_12:outcomeM_Error'        }         -0.14093    0.069794     -2.0193    9.6958e+05      0.043458
+          {'cluster_13:outcomeM_Error'        }        -0.097778    0.046008     -2.1252    9.6958e+05      0.033568
+          {'cluster_14:outcomeM_Error'        }         -0.33169    0.041695     -7.9551    9.6958e+05    1.7915e-15
+          {'state_1:cluster_2:outcomeM_Error' }          0.16012    0.069932      2.2897    9.6958e+05      0.022038
+          {'state_2:cluster_2:outcomeM_Error' }           0.2132     0.09297      2.2932    9.6958e+05      0.021836
+          {'state_1:cluster_4:outcomeM_Error' }          0.18755     0.06958      2.6955    9.6958e+05     0.0070283
+          {'state_2:cluster_4:outcomeM_Error' }          0.12174    0.092658      1.3138    9.6958e+05        0.1889
+          {'state_1:cluster_8:outcomeM_Error' }          0.08189    0.073331      1.1167    9.6958e+05       0.26411
+          {'state_2:cluster_8:outcomeM_Error' }         0.028049    0.097971      0.2863    9.6958e+05       0.77465
+          {'state_1:cluster_12:outcomeM_Error'}          0.22926     0.14324      1.6005    9.6958e+05       0.10949
+          {'state_2:cluster_12:outcomeM_Error'}         0.035537     0.13546     0.26233    9.6958e+05       0.79307
+          {'state_1:cluster_13:outcomeM_Error'}           0.2732    0.074472      3.6684    9.6958e+05    0.00024406
+          {'state_2:cluster_13:outcomeM_Error'}         0.074073     0.10338     0.71648    9.6958e+05        0.4737
+          {'state_1:cluster_14:outcomeM_Error'}          0.16196    0.070369      2.3016    9.6958e+05      0.021357
+          {'state_2:cluster_14:outcomeM_Error'}          0.14536    0.093681      1.5517    9.6958e+05       0.12074
+
+
+          Lower        Upper     
+           -0.80738      -0.41883
+           -0.61463       -0.1634
+            0.38401       0.55999
+            0.40824       0.58109
+            0.34415       0.54886
+           -0.27831       0.12712
+           -0.15205       0.06762
+            0.41405       0.59384
+           0.089665       0.24151
+           -0.11025       0.28953
+           -0.15568       0.31207
+           -0.11635        0.2816
+          -0.065172       0.40049
+            0.12514       0.54783
+             0.2013       0.70076
+           -0.30654       0.65116
+          -0.099595       0.63102
+            0.18772       0.62194
+          -0.033067        0.4996
+           0.096369       0.49957
+           0.043898       0.51651
+           -0.22986       0.03637
+           -0.27736      0.075658
+           -0.28945      -0.12743
+           -0.26729      -0.10731
+           -0.41099      -0.23474
+           -0.27773    -0.0041399
+           -0.18795    -0.0076034
+           -0.41341      -0.24997
+            0.02306       0.29719
+           0.030982       0.39542
+           0.051179       0.32393
+          -0.059869       0.30334
+          -0.061836       0.22562
+           -0.16397       0.22007
+          -0.051494       0.51001
+           -0.22997       0.30104
+            0.12723       0.41916
+           -0.12856        0.2767
+           0.024041       0.29988
+           -0.03825       0.32897
+
+      Random effects covariance parameters (95% CIs):
+      Group: uID:state:cluster (9170 Levels)
+          Name1                     Name2                     Type            Estimate    Lower       Upper   
+          {'(Intercept)'   }        {'(Intercept)'   }        {'std' }         0.48939     0.48069     0.49824
+          {'outcomeM_Error'}        {'(Intercept)'   }        {'corr'}        -0.43384    -0.46088    -0.40599
+          {'outcomeM_Error'}        {'outcomeM_Error'}        {'std' }         0.23876     0.23247     0.24522
+
+      Group: subj (3 Levels)
+          Name1                  Name2                  Type           Estimate    Lower        Upper 
+          {'(Intercept)'}        {'(Intercept)'}        {'std'}        0.086468    0.0029158    2.5642
+
+      Group: Error
+          Name               Estimate    Lower      Upper  
+          {'Res Std'}        0.89794     0.89667    0.89922
+
+
+
+
+ANOVA marginal tests: DFMethod = 'Satterthwaite'
+
+          Term                              FStat     DF1    DF2       pValue    
+          {'state'                 }         22.33     2     17.304    1.6101e-05
+          {'cluster'               }        52.747     6       26.3    2.0079e-13
+          {'outcomeM'              }        18.273     1     67.219    6.1799e-05
+          {'state:cluster'         }         9.179    12     109.55    5.1947e-12
+          {'state:outcomeM'        }        1.3303     2     1218.6       0.26478
+          {'cluster:outcomeM'      }        23.005     6      488.3     6.045e-24
+          {'state:cluster:outcomeM'}        5.2447    12     4843.4    7.5635e-09
+
+
+Model selection
+
+Simulated Likelihood Ratio Test: Nsim = 100, Alpha = 0.05
+
+    Model    DF    AIC           BIC           LogLik         LRStat    pValue      Lower         Upper   
+    lme1     45     2.582e+06    2.5825e+06    -1.2909e+06                                                
+    lme2     46    2.5757e+06    2.5763e+06    -1.2878e+06    6256      0.009901    0.00025064    0.053932
+
+
+Simulated Likelihood Ratio Test: Nsim = 100, Alpha = 0.05
+
+    Model    DF    AIC           BIC           LogLik         LRStat     pValue      Lower        Upper   
+    lme2     46    2.5757e+06    2.5763e+06    -1.2878e+06                                                
+    lme3     33    2.5821e+06    2.5825e+06     -1.291e+06    -6427.9    0.019802    0.0024072    0.069705
+
+Model Fit (AIC/BIC):
+lme2: Lowest AIC (2.5757e+06) and BIC (2.5763e+06), indicating the best balance of goodness-of-fit and complexity.
+lme1: Higher AIC (2.5820e+06) and BIC (2.5825e+06), suggesting a worse fit than lme2.
+lme3: Highest AIC (2.5821e+06) and similar BIC (2.5825e+06), indicating the poorest fit among the three.

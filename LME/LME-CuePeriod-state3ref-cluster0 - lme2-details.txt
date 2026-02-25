@@ -1,0 +1,179 @@
+    state    cluster    GroupCount mean_TCspks
+      3        0              5401         1.09  
+      3        2             35055       4.4936  
+      3        4             45741       4.1022  
+      3        8             17022       2.4705  
+      3        12             2360       1.2102  
+      3        13            13451       3.5916  
+      3        14            33394        3.983  
+      1        0              5079       1.2044  
+      1        2        2.2337e+05       4.0146  
+      1        4        2.4486e+05        3.851  
+      1        8             63402        2.498  
+      1        12             1268       1.3849  
+      1        13            49083       4.5688  
+      1        14       1.5156e+05       3.0847  
+      2        0              1061      0.77757  
+      2        2             23421       2.5855  
+      2        4             24783       2.5615  
+      2        8              6866       2.3931  
+      2        12             1004      0.90438  
+      2        13             4057        1.844  
+      2        14            17379        2.219  
+
+lme2 = fitlme(T, 'TCspks ~ -1 + Tpuffs * state * cluster + (Tpuffs | uID:state:cluster) + (1 | subj)');
+
+Linear mixed-effects model fit by ML
+
+Model information:
+    Number of observations          969626
+    Fixed effects coefficients          41
+    Random effects coefficients      18343
+    Covariance parameters                5
+
+Formula:
+    Linear Mixed Formula with 5 predictors.
+
+Model fit statistics:
+    AIC           BIC           LogLikelihood    Deviance  
+    4.7693e+06    4.7698e+06    -2.3846e+06      4.7692e+06
+
+Fixed effects coefficients (95% CIs):
+    Name                                 Estimate     SE          tStat       DF            pValue     
+    {'state_1'                  }         -0.72332     0.46075     -1.5699    9.6958e+05        0.11644
+    {'state_2'                  }          -1.1275     0.64215     -1.7559    9.6958e+05       0.079108
+    {'Tpuffs'                   }          0.22178    0.015448      14.356    9.6958e+05     9.8762e-47
+    {'cluster_2'                }          -2.7239     0.10263      -26.54    9.6958e+05    3.7756e-155
+    {'cluster_4'                }          -2.7421     0.09155     -29.952    9.6958e+05    5.1342e-197
+    {'cluster_8'                }         -0.90947      0.1604     -5.6701    9.6958e+05     1.4277e-08
+    {'cluster_12'               }         -0.14464     0.43857     -0.3298    9.6958e+05        0.74155
+    {'cluster_13'               }          -1.7711       0.181     -9.7853    9.6958e+05     1.3052e-22
+    {'cluster_14'               }          -1.9283      0.1098     -17.562    9.6958e+05     4.9259e-69
+    {'state_1:Tpuffs'           }        -0.038023    0.084333    -0.45087    9.6958e+05        0.65209
+    {'state_2:Tpuffs'           }          0.11702     0.11228      1.0423    9.6958e+05        0.29729
+    {'state_1:cluster_2'        }          0.45261     0.47375     0.95538    9.6958e+05        0.33939
+    {'state_2:cluster_2'        }           1.1296     0.65717      1.7189    9.6958e+05       0.085637
+    {'state_1:cluster_4'        }          0.79326     0.47117      1.6836    9.6958e+05       0.092259
+    {'state_2:cluster_4'        }             1.18     0.65427      1.8035    9.6958e+05       0.071311
+    {'state_1:cluster_8'        }         -0.63021     0.49954     -1.2616    9.6958e+05         0.2071
+    {'state_2:cluster_8'        }           1.0163     0.68778      1.4777    9.6958e+05        0.13949
+    {'state_1:cluster_12'       }         0.030817      1.1098    0.027768    9.6958e+05        0.97785
+    {'state_2:cluster_12'       }         -0.61882      1.0792    -0.57338    9.6958e+05        0.56638
+    {'state_1:cluster_13'       }         -0.46644     0.50965    -0.91522    9.6958e+05        0.36008
+    {'state_2:cluster_13'       }          0.87045     0.73008      1.1923    9.6958e+05        0.23316
+    {'state_1:cluster_14'       }          0.52461     0.47713      1.0995    9.6958e+05        0.27154
+    {'state_2:cluster_14'       }           1.5305     0.66124      2.3145    9.6958e+05        0.02064
+    {'Tpuffs:cluster_2'         }          0.60039    0.022277      26.951    9.6958e+05    6.3897e-160
+    {'Tpuffs:cluster_4'         }          0.61087    0.020809      29.357    9.6958e+05    2.3842e-189
+    {'Tpuffs:cluster_8'         }          0.25309    0.032269      7.8432    9.6958e+05     4.3961e-15
+    {'Tpuffs:cluster_12'        }         0.047148     0.08519     0.55345    9.6958e+05        0.57996
+    {'Tpuffs:cluster_13'        }          0.35394    0.035313      10.023    9.6958e+05     1.2117e-23
+    {'Tpuffs:cluster_14'        }          0.42324    0.023543      17.977    9.6958e+05     3.0118e-72
+    {'state_1:Tpuffs:cluster_2' }        -0.069635    0.086557     -0.8045    9.6958e+05        0.42111
+    {'state_2:Tpuffs:cluster_2' }         -0.18722     0.11487     -1.6299    9.6958e+05        0.10313
+    {'state_1:Tpuffs:cluster_4' }         -0.13856    0.086129     -1.6088    9.6958e+05        0.10767
+    {'state_2:Tpuffs:cluster_4' }         -0.20357     0.11434     -1.7804    9.6958e+05       0.075004
+    {'state_1:Tpuffs:cluster_8' }           0.1115    0.091528      1.2182    9.6958e+05        0.22315
+    {'state_2:Tpuffs:cluster_8' }         -0.13259     0.12061     -1.0993    9.6958e+05        0.27163
+    {'state_1:Tpuffs:cluster_12'}         0.054638     0.20493     0.26662    9.6958e+05        0.78976
+    {'state_2:Tpuffs:cluster_12'}           0.1133     0.19226     0.58931    9.6958e+05        0.55565
+    {'state_1:Tpuffs:cluster_13'}           0.2203    0.093159      2.3648    9.6958e+05       0.018042
+    {'state_2:Tpuffs:cluster_13'}         -0.10356     0.12814    -0.80817    9.6958e+05        0.41899
+    {'state_1:Tpuffs:cluster_14'}          -0.0549    0.087219    -0.62945    9.6958e+05        0.52905
+    {'state_2:Tpuffs:cluster_14'}         -0.22782     0.11564     -1.9701    9.6958e+05       0.048824
+
+
+    Lower        Upper     
+      -1.6264       0.17973
+      -2.3861       0.13105
+       0.1915       0.25206
+      -2.9251       -2.5228
+      -2.9215       -2.5627
+      -1.2238       -0.5951
+      -1.0042       0.71494
+      -2.1259       -1.4164
+      -2.1435       -1.7131
+     -0.20331       0.12727
+     -0.10304       0.33708
+     -0.47593        1.3812
+     -0.15844        2.4176
+     -0.13021        1.7167
+     -0.10237        2.4623
+      -1.6093       0.34887
+     -0.33169        2.3644
+      -2.1443         2.206
+      -2.7341        1.4965
+      -1.4653       0.53245
+     -0.56049        2.3014
+     -0.41055        1.4598
+      0.23444        2.8265
+      0.55673       0.64405
+      0.57008       0.65165
+      0.18984       0.31634
+     -0.11982       0.21412
+      0.28473       0.42315
+       0.3771       0.46938
+     -0.23928       0.10001
+     -0.41236       0.03792
+     -0.30737      0.030249
+     -0.42768      0.020527
+    -0.067893       0.29089
+     -0.36899       0.10381
+     -0.34702       0.45629
+     -0.26352       0.49012
+      0.03771       0.40289
+     -0.35472       0.14759
+     -0.22585       0.11605
+     -0.45446    -0.0011752
+
+Random effects covariance parameters (95% CIs):
+Group: uID:state:cluster (9170 Levels)
+    Name1                  Name2                  Type            Estimate    Lower       Upper   
+    {'(Intercept)'}        {'(Intercept)'}        {'std' }         1.8987       1.8562      1.9422
+    {'Tpuffs'     }        {'(Intercept)'}        {'corr'}         -0.979     -0.98073    -0.97711
+    {'Tpuffs'     }        {'Tpuffs'     }        {'std' }        0.36479      0.35802     0.37168
+
+Group: subj (3 Levels)
+    Name1                  Name2                  Type           Estimate    Lower       Upper  
+    {'(Intercept)'}        {'(Intercept)'}        {'std'}        0.076859    0.033682    0.17538
+
+Group: Error
+    Name               Estimate    Lower     Upper 
+    {'Res Std'}        2.7862      2.7823    2.7902
+
+
+ANOVA marginal tests: DFMethod = 'Satterthwaite'
+
+    Term                            FStat      DF1    DF2       pValue     
+    {'state'               }         2.7567     2     9913.6       0.063548
+    {'Tpuffs'              }          206.1     1      35.64     2.1883e-16
+    {'cluster'             }         237.58     6     247.48     1.1475e-99
+    {'state:Tpuffs'        }        0.65707     2      10780        0.51839
+    {'state:cluster'       }         7.1231    12     8816.7     4.3283e-13
+    {'Tpuffs:cluster'      }         183.42     6     603.25    1.8966e-132
+    {'state:Tpuffs:cluster'}         9.3423    12     9618.9     2.9974e-18
+
+
+
+Model selection
+lme1 = fitlme(T, 'TCspks ~ -1 + Tpuffs * state * cluster + (Tpuffs | uID) + (1 | subj)');
+lme2 = fitlme(T, 'TCspks ~ -1 + Tpuffs * state * cluster + (Tpuffs | uID:state:cluster) + (1 | subj)');
+lme3 = fitlme(T, 'TCspks ~ -1 + Tpuffs * state * cluster + (1 | uID:state:cluster) + (1 | subj)');
+
+Simulated Likelihood Ratio Test: Nsim = 100, Alpha = 0.05
+
+    Model    DF    AIC           BIC           LogLik         LRStat    pValue      Lower         Upper   
+    lme1     46    4.8202e+06    4.8207e+06    -2.4101e+06                                                
+    lme2     46    4.7693e+06    4.7698e+06    -2.3846e+06    50917     0.009901    0.00025064    0.053932
+
+
+Simulated Likelihood Ratio Test: Nsim = 100, Alpha = 0.05
+
+    Model    DF    AIC           BIC           LogLik         LRStat    pValue      Lower         Upper   
+    lme2     46    4.7693e+06    4.7698e+06    -2.3846e+06                                                
+    lme3     44    4.8258e+06    4.8264e+06    -2.4129e+06    -56567    0.009901    0.00025064    0.053932
+
+Model Fit (AIC/BIC):
+lme2 has the lowest AIC (4.7693e+06) and BIC (4.7698e+06) among the three models, indicating the best balance between goodness-of-fit and model complexity.
+lme1 has a higher AIC (4.8202e+06) and BIC (4.8207e+06), suggesting a poorer fit.
+lme3 has the highest AIC (4.8258e+06) and BIC (4.8264e+06), indicating the worst fit.
