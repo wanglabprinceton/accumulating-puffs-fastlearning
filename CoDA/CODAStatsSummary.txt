@@ -1,0 +1,341 @@
+MANOVA on state occupancy transforned to Aitchison composition scale using isometric log ratio
+V1 - compositional dimension 1 
+V2 - compositional dimension 2 
+
+ssnonpartest
+The Wilks' Lambda type statistic will be used in the following test 
+The Global Hypothesis is significant which controls the maximum overall type I error rate at alpha= 0.01 
+
+res.man <- manova(cbind(V1, V2) ~ group, data = dat_ilr)
+> summary(res.man)
+
+           Df  Pillai approx F num Df den Df    Pr(>F)    
+group       7 0.36648   4.8396     14    302 4.585e-08 ***
+Residuals 151                                             
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+summary.aov(res.man)
+ Response V1 :
+             Df  Sum Sq Mean Sq F value  Pr(>F)  
+group         7  18.926  2.7037  2.3703 0.02512 *
+Residuals   151 172.237  1.1406                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+ Response V2 :
+             Df Sum Sq Mean Sq F value    Pr(>F)    
+group         7 30.882  4.4117  7.1062 2.455e-07 ***
+Residuals   151 93.744  0.6208                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+###############################################################################################################
+TSC1 group stats 
+V1
+ANOVA
+res.aov2 <- aov(V1 ~ group + day + group:day, data = datTSC1_ilr)
+> summary(res.aov2)
+            Df Sum Sq Mean Sq F value   Pr(>F)    
+group        1   8.06   8.062   9.709   0.0033 ** 
+day          2  30.29  15.147  18.241 1.99e-06 ***
+group:day    2   0.09   0.043   0.051   0.9499    
+Residuals   42  34.87   0.830                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+post-hoc with 
+Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V1 ~ group + day + group:day, data = datTSC1_ilr)
+
+$group
+                       diff       lwr      upr     p adj
+Tsc1 neg-Tsc1 mut 0.8196564 0.2887962 1.350516 0.0033013
+
+$day
+                  diff       lwr        upr     p adj
+lv3-4-lv0-2 -0.5553938 -1.338107  0.2273196 0.2083023
+lv5-6-lv0-2 -1.8928379 -2.675551 -1.1101244 0.0000018
+lv5-6-lv3-4 -1.3374440 -2.120157 -0.5547306 0.0004558
+
+$`group:day`
+                                    diff        lwr         upr     p adj
+Tsc1 neg:lv0-2-Tsc1 mut:lv0-2  0.8192151 -0.5409215  2.17935174 0.4779471
+Tsc1 mut:lv3-4-Tsc1 mut:lv0-2 -0.5040593 -1.8641959  0.85607731 0.8760209
+Tsc1 neg:lv3-4-Tsc1 mut:lv0-2  0.2124868 -1.1476498  1.57262341 0.9970528
+Tsc1 mut:lv5-6-Tsc1 mut:lv0-2 -1.9448342 -3.3049708 -0.58469761 0.0014462
+Tsc1 neg:lv5-6-Tsc1 mut:lv0-2 -1.0216264 -2.3817630  0.33851024 0.2407589
+Tsc1 mut:lv3-4-Tsc1 neg:lv0-2 -1.3232744 -2.6834110  0.03686217 0.0606280
+Tsc1 neg:lv3-4-Tsc1 neg:lv0-2 -0.6067283 -1.9668649  0.75340827 0.7659680
+Tsc1 mut:lv5-6-Tsc1 neg:lv0-2 -2.7640494 -4.1241860 -1.40391275 0.0000046
+Tsc1 neg:lv5-6-Tsc1 neg:lv0-2 -1.8408415 -3.2009781 -0.48070490 0.0028626
+Tsc1 neg:lv3-4-Tsc1 mut:lv3-4  0.7165461 -0.6435905  2.07668270 0.6204633
+Tsc1 mut:lv5-6-Tsc1 mut:lv3-4 -1.4407749 -2.8009115 -0.08063833 0.0322935
+Tsc1 neg:lv5-6-Tsc1 mut:lv3-4 -0.5175671 -1.8777037  0.84256953 0.8635224
+Tsc1 mut:lv5-6-Tsc1 neg:lv3-4 -2.1573210 -3.5174576 -0.79718442 0.0003421
+Tsc1 neg:lv5-6-Tsc1 neg:lv3-4 -1.2341132 -2.5942498  0.12602343 0.0947173
+Tsc1 neg:lv5-6-Tsc1 mut:lv5-6  0.9232079 -0.4369288  2.28334445 0.3452623
+
+
+TSC1 group stats 
+V2
+res.aov2 <- aov(V2 ~ group + day + group:day, data = datTSC1_ilr)
+> summary(res.aov2)
+            Df Sum Sq Mean Sq F value Pr(>F)
+group        1  0.245  0.2448   0.551  0.462
+day          2  0.833  0.4164   0.937  0.400
+group:day    2  1.335  0.6675   1.502  0.234
+Residuals   42 18.661  0.4443  
+
+post-hoc with 
+Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V2 ~ group + day + group:day, data = datTSC1_ilr)
+
+$group
+                       diff        lwr       upr     p adj
+Tsc1 neg-Tsc1 mut 0.1428232 -0.2455005 0.5311468 0.4620737
+
+$day
+                   diff        lwr       upr     p adj
+lv3-4-lv0-2  0.01372981 -0.5588242 0.5862838 0.9981306
+lv5-6-lv0-2 -0.27230347 -0.8448575 0.3002506 0.4860407
+lv5-6-lv3-4 -0.28603328 -0.8585873 0.2865207 0.4518331
+
+$`group:day`
+                                     diff        lwr       upr     p adj
+Tsc1 neg:lv0-2-Tsc1 mut:lv0-2 -0.21262468 -1.2075631 0.7823138 0.9874032
+Tsc1 mut:lv3-4-Tsc1 mut:lv0-2 -0.11857683 -1.1135153 0.8763616 0.9991950
+Tsc1 neg:lv3-4-Tsc1 mut:lv0-2 -0.06658822 -1.0615267 0.9283502 0.9999526
+Tsc1 mut:lv5-6-Tsc1 mut:lv0-2 -0.67316859 -1.6681071 0.3217699 0.3487430
+Tsc1 neg:lv5-6-Tsc1 mut:lv0-2 -0.08406303 -1.0790015 0.9108754 0.9998502
+Tsc1 mut:lv3-4-Tsc1 neg:lv0-2  0.09404785 -0.9008906 1.0889863 0.9997400
+Tsc1 neg:lv3-4-Tsc1 neg:lv0-2  0.14603646 -0.8489020 1.1409749 0.9978086
+Tsc1 mut:lv5-6-Tsc1 neg:lv0-2 -0.46054391 -1.4554824 0.5343946 0.7373922
+Tsc1 neg:lv5-6-Tsc1 neg:lv0-2  0.12856165 -0.8663768 1.1235001 0.9988103
+Tsc1 neg:lv3-4-Tsc1 mut:lv3-4  0.05198861 -0.9429499 1.0469271 0.9999861
+Tsc1 mut:lv5-6-Tsc1 mut:lv3-4 -0.55459176 -1.5495302 0.4403467 0.5623280
+Tsc1 neg:lv5-6-Tsc1 mut:lv3-4  0.03451380 -0.9604247 1.0294523 0.9999982
+Tsc1 mut:lv5-6-Tsc1 neg:lv3-4 -0.60658037 -1.6015188 0.3883581 0.4644231
+Tsc1 neg:lv5-6-Tsc1 neg:lv3-4 -0.01747481 -1.0124133 0.9774637 0.9999999
+Tsc1 neg:lv5-6-Tsc1 mut:lv5-6  0.58910556 -0.4058329 1.5840440 0.4968700
+
+###############################################################################################################
+Strong Air-Puffs group stats 
+V1
+ANOVA
+res.aov2 <- aov(V1 ~ group + day + group:day, data = datTSC1_ilr)
+summary(res.aov2)
+            Df Sum Sq Mean Sq F value  Pr(>F)    
+group        1  1.534   1.534   3.515   0.070 .  
+day          1 19.273  19.273  44.168 1.7e-07 ***
+group:day    1  0.961   0.961   2.203   0.148    
+Residuals   32 13.964   0.436                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+post-hoc with 
+ Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V1 ~ group + day + group:day, data = datTSC1_ilr)
+
+$group
+                          diff        lwr       upr     p adj
+C57 20psi-C57 10psi -0.4128372 -0.8613546 0.0356803 0.0699597
+
+$day
+                 diff       lwr       upr p adj
+lv5-6-lv3-4 -1.463377 -1.911894 -1.014859 2e-07
+
+$`group:day`
+                                       diff       lwr        upr     p adj
+C57 20psi:lv3-4-C57 10psi:lv3-4 -0.73966552 -1.583359  0.1040276 0.1024972
+C57 10psi:lv5-6-C57 10psi:lv3-4 -1.79020504 -2.633898 -0.9465119 0.0000129
+C57 20psi:lv5-6-C57 10psi:lv3-4 -1.87621386 -2.719907 -1.0325207 0.0000058
+C57 10psi:lv5-6-C57 20psi:lv3-4 -1.05053952 -1.894233 -0.2068464 0.0100339
+C57 20psi:lv5-6-C57 20psi:lv3-4 -1.13654834 -1.980241 -0.2928552 0.0048800
+C57 20psi:lv5-6-C57 10psi:lv5-6 -0.08600882 -0.929702  0.7576843 0.9924937
+
+Strong Air-Puffs group stats 
+V2
+ANOVA
+res.aov2 <- aov(V2 ~ group + day + group:day, data = datTSC1_ilr)
+summary(res.aov2)
+            Df Sum Sq Mean Sq F value Pr(>F)
+group        1  0.630  0.6303   1.417  0.243
+day          1  0.374  0.3740   0.841  0.366
+group:day    1  0.791  0.7906   1.778  0.192
+Residuals   32 14.229  0.4446   
+
+post-hoc with 
+Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V2 ~ group + day + group:day, data = datTSC1_ilr)
+
+$group
+                          diff        lwr       upr     p adj
+C57 20psi-C57 10psi -0.2646334 -0.7173859 0.1881192 0.2425738
+
+$day
+                  diff        lwr       upr     p adj
+lv5-6-lv3-4 -0.2038591 -0.6566116 0.2488934 0.3659189
+
+$`group:day`
+                                       diff        lwr       upr     p adj
+C57 20psi:lv3-4-C57 10psi:lv3-4 -0.56101073 -1.4126703 0.2906489 0.2990662
+C57 10psi:lv5-6-C57 10psi:lv3-4 -0.50023646 -1.3518961 0.3514231 0.3976778
+C57 20psi:lv5-6-C57 10psi:lv3-4 -0.46849245 -1.3201520 0.3831671 0.4548805
+C57 10psi:lv5-6-C57 20psi:lv3-4  0.06077427 -0.7908853 0.9124339 0.9973843
+C57 20psi:lv5-6-C57 20psi:lv3-4  0.09251829 -0.7591413 0.9441779 0.9909550
+C57 20psi:lv5-6-C57 10psi:lv5-6  0.03174402 -0.8199156 0.8834036 0.9996231
+
+
+###############################################################################################################
+Cue-locked opto group stats 
+V1
+ANOVA
+ONLY on Middle and Late
+res.aov2 <- aov(V1 ~ group + day + group:day, data = datTSC1_ilr)
+summary(res.aov2)
+            Df Sum Sq Mean Sq F value  Pr(>F)    
+group        1  7.817   7.817  12.301 0.00292 ** 
+day          1 10.446  10.446  16.439 0.00092 ***
+group:day    1  1.077   1.077   1.695 0.21143    
+Residuals   16 10.168   0.635                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+post-hoc with
+Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V1 ~ group + day + group:day, data = datTSC1_ilr)
+
+$group
+                                 diff       lwr      upr     p adj
+cue-locked neg-cue-locked mut 1.25035 0.4945942 2.006107 0.0029185
+
+$day
+                 diff       lwr        upr     p adj
+lv5-6-lv3-4 -1.445436 -2.201193 -0.6896802 0.0009204
+
+$`group:day`
+                                                diff        lwr        upr     p adj
+cue-locked neg:lv3-4-cue-locked mut:lv3-4  0.7862654 -0.6561859  2.2287167 0.4277132
+cue-locked mut:lv5-6-cue-locked mut:lv3-4 -1.9095214 -3.3519727 -0.4670702 0.0078971
+cue-locked neg:lv5-6-cue-locked mut:lv3-4 -0.1950860 -1.6375373  1.2473652 0.9796220
+cue-locked mut:lv5-6-cue-locked neg:lv3-4 -2.6957868 -4.1382381 -1.2533356 0.0003448
+cue-locked neg:lv5-6-cue-locked neg:lv3-4 -0.9813514 -2.4238027  0.4610998 0.2486514
+cue-locked neg:lv5-6-cue-locked mut:lv5-6  1.7144354  0.2719841  3.1568867 0.0172804
+
+V2
+ANOVA
+res.aov2 <- aov(V2 ~ group + day + group:day, data = datTSC1_ilr)
+summary(res.aov2)
+            Df Sum Sq Mean Sq F value  Pr(>F)   
+group        1  8.722   8.722  10.291 0.00549 **
+day          1  0.072   0.072   0.085 0.77422   
+group:day    1  0.464   0.464   0.547 0.47029   
+Residuals   16 13.560   0.848                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1                 
+
+post-hoc with
+Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V2 ~ group + day + group:day, data = datTSC1_ilr)
+
+$group
+                                  diff       lwr      upr     p adj
+cue-locked neg-cue-locked mut 1.320738 0.4479539 2.193522 0.0054854
+
+$day
+                  diff        lwr       upr     p adj
+lv5-6-lv3-4 -0.1201176 -0.9929017 0.7526664 0.7742237
+
+$`group:day`
+                                                diff        lwr       upr     p adj
+cue-locked neg:lv3-4-cue-locked mut:lv3-4  1.0162618 -0.6495510 2.6820747 0.3340272
+cue-locked mut:lv5-6-cue-locked mut:lv3-4 -0.4245937 -2.0904065 1.2412192 0.8839545
+cue-locked neg:lv5-6-cue-locked mut:lv3-4  1.2006203 -0.4651926 2.8664331 0.2074188
+cue-locked mut:lv5-6-cue-locked neg:lv3-4 -1.4408555 -3.1066684 0.2249573 0.1026268
+cue-locked neg:lv5-6-cue-locked neg:lv3-4  0.1843584 -1.4814544 1.8501713 0.9885901
+cue-locked neg:lv5-6-cue-locked mut:lv5-6  1.6252139 -0.0405989 3.2910268 0.0571159
+
+
+###############################################################################################################
+Pulsed opto group stats 
+V1
+ANOVA
+res.aov2 <- aov(V1 ~ group + day + group:day, data = datTSC1_ilr)
+summary(res.aov2)
+            Df Sum Sq Mean Sq F value  Pr(>F)    
+group        1  1.994   1.994   2.885   0.112    
+day          1 20.870  20.870  30.189 7.9e-05 ***
+group:day    1  0.231   0.231   0.334   0.573    
+Residuals   14  9.678   0.691                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+post-hoc with
+ Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V1 ~ group + day + group:day, data = datTSC1_ilr)
+
+$group
+                                     diff        lwr      upr     p adj
+pulsed opto neg-pulsed opto mut 0.6698451 -0.1760473 1.515737 0.1115344
+
+$day
+                 diff       lwr       upr   p adj
+lv5-6-lv3-4 -2.153566 -2.994221 -1.312912 7.9e-05
+
+$`group:day`
+                                                  diff        lwr        upr     p adj
+pulsed opto neg:lv3-4-pulsed opto mut:lv3-4  0.4420496 -1.1791122  2.0632113 0.8566428
+pulsed opto mut:lv5-6-pulsed opto mut:lv3-4 -2.3560512 -3.8844972 -0.8276053 0.0025781
+pulsed opto neg:lv5-6-pulsed opto mut:lv3-4 -1.4584107 -3.0795725  0.1627510 0.0845831
+pulsed opto mut:lv5-6-pulsed opto neg:lv3-4 -2.7981008 -4.4192626 -1.1769391 0.0009586
+pulsed opto neg:lv5-6-pulsed opto neg:lv3-4 -1.9004603 -3.6093148 -0.1916058 0.0272968
+pulsed opto neg:lv5-6-pulsed opto mut:lv5-6  0.8976405 -0.7235212  2.5188023 0.4049785
+
+V2
+ANOVA
+summary(res.aov2)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+group        1  0.001  0.0010   0.002 0.9634  
+day          1  2.931  2.9313   6.369 0.0243 *
+group:day    1  0.152  0.1519   0.330 0.5748  
+Residuals   14  6.444  0.4603                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+post-hoc with
+Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V2 ~ group + day + group:day, data = datTSC1_ilr)
+
+$group
+                                       diff        lwr       upr     p adj
+pulsed opto neg-pulsed opto mut -0.01503458 -0.7052402 0.6751711 0.9633968
+
+$day
+                  diff       lwr        upr     p adj
+lv5-6-lv3-4 -0.8070962 -1.493028 -0.1211643 0.0243284
+
+$`group:day`
+                                                  diff       lwr       upr     p adj
+pulsed opto neg:lv3-4-pulsed opto mut:lv3-4  0.1698306 -1.152956 1.4926170 0.9815495
+pulsed opto mut:lv5-6-pulsed opto mut:lv3-4 -0.6427716 -1.889907 0.6043634 0.4643482
+pulsed opto neg:lv5-6-pulsed opto mut:lv3-4 -0.8426713 -2.165458 0.4801151 0.2916390
+pulsed opto mut:lv5-6-pulsed opto neg:lv3-4 -0.8126022 -2.135389 0.5101843 0.3201994
+pulsed opto neg:lv5-6-pulsed opto neg:lv3-4 -1.0125019 -2.406841 0.3818375 0.1973216
+pulsed opto neg:lv5-6-pulsed opto mut:lv5-6 -0.1998997 -1.522686 1.1228867 0.9706192

@@ -1,0 +1,72 @@
+MANOVA on state occupancy transforned to Aitchison composition scale using isometric log ratio
+V1 - compositional dimension 1 
+V2 - compositional dimension 2 
+
+ssnonpartest(V1 | V2 ~ day, data = dat_ilr, alpha = 0.01, factors.and.variables = TRUE)
+
+The Wilks' Lambda type statistic will be used in the following test 
+The Global Hypothesis is significant, subset algorithm will continue 
+
+~Performing the Subset Algorithm based on Factor levels~
+The Hypothesis of equality between factor levels  lv0-2 lv3-4 lv5-6 is rejected 
+The Hypothesis of equality between factor levels  lv3-4 lv5-6 is rejected  
+The Hypothesis of equality between factor levels  lv0-2 lv5-6 is rejected  
+The Hypothesis of equality between factor levels  lv0-2 lv3-4 is rejected  
+All appropriate subsets using factor levels have been checked using a closed multiple testing procedure, which controls the maximum overall type I error rate at alpha= 0.01 
+
+~Performing the Subset Algorithm based on Response Variables~ 
+ The Hypothesis of equality using response variables  V1 V2 is rejected 
+The Hypothesis of equality using response variables  V2 is rejected 
+The Hypothesis of equality using response variables  V1 is rejected 
+All appropriate subsets using response variables have been checked using a multiple testing procedure, which controls the maximum overall type I error rate at alpha= 0.01
+
+
+res.man <- manova(cbind(V1, V2) ~ day, data = dat_ilr)
+
+          Df  Pillai approx F num Df den Df   Pr(>F)    
+day        2 0.46236   9.4718      4    126 9.98e-07 ***
+Residuals 63                                            
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+> res.aov <- aov(V1 ~ day, data = dat_ilr)
+
+            Df Sum Sq Mean Sq F value  Pr(>F)    
+day          2  104.7   52.33   22.36 4.6e-08 ***
+Residuals   63  147.5    2.34                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V1 ~ day, data = dat_ilr)
+
+$day
+                 diff       lwr        upr     p adj
+lv3-4-lv0-2 -1.397174 -2.504470 -0.2898786 0.0098234
+lv5-6-lv0-2 -3.080169 -4.187464 -1.9728727 0.0000000
+lv5-6-lv3-4 -1.682994 -2.790290 -0.5756983 0.0015392
+
+res.aov <- aov(V2 ~ day, data = dat_ilr)
+
+            Df Sum Sq Mean Sq F value   Pr(>F)    
+day          2  33.59  16.796   12.33 3.03e-05 ***
+Residuals   63  85.82   1.362                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = V2 ~ day, data = dat_ilr)
+
+$day
+                  diff       lwr        upr     p adj
+lv3-4-lv0-2 -1.1778333 -2.022513 -0.3331538 0.0038969
+lv5-6-lv0-2 -1.7068779 -2.551557 -0.8621984 0.0000249
+lv5-6-lv3-4 -0.5290446 -1.373724  0.3156349 0.2962468
+
+
+
+
